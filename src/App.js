@@ -11,7 +11,8 @@ class App extends Component {
       selectOptions: [],
       label: '',
       value: '',
-      count: 7
+      count: 7,
+      input: ''
     }
   }
 
@@ -38,8 +39,8 @@ class App extends Component {
     this.setState({ count: this.state.count + 1 })
 
     const options = this.state.selectOptions
-      .filter(option => option.label !== this.state.label)
-      .concat({ label: this.state.label, value: this.state.count })
+      .filter(option => option.label !== this.state.input)
+      .concat({ label: this.state.input, value: this.state.count })
 
     this.setState({ selectOptions: options })
   }
@@ -49,7 +50,7 @@ class App extends Component {
     const inputVal = e.target.value
 
     if (inputVal.match(regEx)) {
-      this.setState({ label: inputVal })
+      this.setState({ input: inputVal })
     } else {
       alert(`Input is not valid: ${inputVal}`)
     }
@@ -60,8 +61,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.selectOptions)
-
     return (
       <div className="container">
         <div className="main">
@@ -70,7 +69,7 @@ class App extends Component {
               <button onClick={this.handleAdd} className="btn btn-secondary">Add Option</button>
             </div>
             <div className="col-mid-3 input">
-              <input className="text-input" onChange={this.handleInput} placeholder="Enter option" />
+              <input id="input-id" className="text-input" onChange={this.handleInput} placeholder="Enter option" />
             </div>
           </div>
           <div className="row select-div">
