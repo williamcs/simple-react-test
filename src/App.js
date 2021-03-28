@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
 import 'bootstrap/dist/css/bootstrap.css'
+import './App.css'
 
 class App extends Component {
 
@@ -15,7 +16,7 @@ class App extends Component {
   }
 
   getOptions() {
-    // raw data for init dropdown list
+    // init raw data for dropdown list
     const data = [
       { label: "Apple", value: 1 },
       { label: "Facebook", value: 2 },
@@ -36,8 +37,10 @@ class App extends Component {
     console.log('Add clicked', this.state.count)
     this.setState({ count: this.state.count + 1 })
 
-    const deduplicatedOptions = this.state.selectOptions.filter(option => option.label !== this.state.label)
-    const options = deduplicatedOptions.concat({ label: this.state.label, value: this.state.count })
+    const options = this.state.selectOptions
+      .filter(option => option.label !== this.state.label)
+      .concat({ label: this.state.label, value: this.state.count })
+
     this.setState({ selectOptions: options })
   }
 
@@ -61,17 +64,24 @@ class App extends Component {
 
     return (
       <div className="container">
-        <button onClick={this.handleAdd} className="btn btn-secondary">Add Text</button>
-        <input onChange={this.handleInput} placeholder="Enter name" />
-
-        <div className="row">
-          <div className="col-md-4"></div>
-          <div className="col-md-4">
-            <Select options={this.state.selectOptions} onChange={this.handleChange} />
+        <div className="main">
+          <div className="row">
+            <div className="col-mid-3 button">
+              <button onClick={this.handleAdd} className="btn btn-secondary">Add Option</button>
+            </div>
+            <div className="col-mid-3 input">
+              <input className="text-input" onChange={this.handleInput} placeholder="Enter option" />
+            </div>
           </div>
-          <div className="col-md-4"></div>
+          <div className="row select-div">
+            <div className="col-mid-3 select">
+              <Select options={this.state.selectOptions} onChange={this.handleChange} />
+            </div>
+            <div className="col-mid-3 option">
+              <span>You have selected <strong>{this.state.label}</strong></span>
+            </div>
+          </div>
         </div>
-        <p>You have selected <strong>{this.state.label}</strong> whose value is <strong>{this.state.value}</strong></p>
       </div>
     )
   }

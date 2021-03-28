@@ -28,6 +28,33 @@
   color: #61dafb;
 }
 
+.main {
+  margin-top: 10%;
+  margin-left: 20%;
+}
+
+.button {
+  margin-right: 1rem;
+}
+
+.input {
+  margin-right: 1rem;
+  line-height: 2rem;
+}
+
+.select-div {
+  margin-top: 2rem;
+}
+
+.select {
+  width: 20rem;
+  margin-right: 1rem;
+}
+
+.option span {
+  line-height: 2rem;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
